@@ -1,0 +1,85 @@
+﻿<div class="col-md-6 col-md-offset-3">
+    <h2>Register</h2>
+    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+        <!-- <div><my-app></my-app>></div> -->
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName"
+            maxlength="30" #firstName="ngModel" required />
+            <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !surName.valid }">
+            <label for="surName">SurName</label>
+            <input type="text" class="form-control" name="surName" [(ngModel)]="model.surName"
+            maxlength="30" #surName="ngModel" required />
+            <div *ngIf="f.submitted && !surName.valid" class="help-block">SurName is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName"
+            maxlength="30" #lastName="ngModel" required />
+            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+        </div>
+       
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mobilenumber.valid }">
+            <label for="mobilenumber">Mobile Number</label>
+            <input type="text" class="form-control" id="mobilenumber" required [(ngModel)]="model.mobilenumber" name="mobilenumber" pattern="[0-9]*"
+                minlength="10" maxlength="10" #mobilenumber="ngModel">
+            <div [hidden]="mobilenumber.valid || mobilenumber.pristine" class="alert alert-danger">
+                <div [hidden]="!mobilenumber.hasError('minlength')">Mobile should be 10digit</div>
+                <div [hidden]="!mobilenumber.hasError('required')">Mobile is required</div>
+                <div [hidden]="!mobilenumber.hasError('pattern')">Mobile number should be only numbers</div>
+            </div>
+            <div *ngIf="f.submitted && !mobilenumber.valid" class="help-block">Mobile number is required</div>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !emailId.valid }">
+            <label for="emailId">Email id</label>
+            <input type="text" class="form-control" id="emailId" required [(ngModel)]="model.emailId" name="emailId" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                #emailId="ngModel">
+            <div [hidden]="emailId.valid || emailId.pristine" class="alert alert-danger">
+                <div [hidden]="!emailId.hasError('required')">Email is required</div>
+                <div [hidden]="!emailId.hasError('pattern')">Email format should be
+                    <small>
+                        <b>joe@abc.com</b>
+                    </small>
+                </div>
+            </div>
+            <div *ngIf="f.submitted && !emailId.valid" class="help-block">EmailId is required</div>
+        </div>
+
+        <!-- DOB validation is not working. Hence commented -->
+
+        <!-- <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !dob.valid }">
+            <label for="dob">Birth Date</label>
+            <input type="text" class="form-control" id="dob" required [(ngModel)]="model.dob" name="dob"
+             pattern="/^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[9]{1}\d{1})|([2-9]{1}\d{3}))$/" #dob="ngModel">
+            <div [hidden]="dob.valid || dob.pristine" class="alert alert-danger">
+                <div [hidden]="!dob.hasError('required')">DOB is required</div>
+                <div [hidden]="!dob.hasError('pattern')">DOB format should be
+                    <small>
+                        <b> MM/DD/YYYY</b>
+                    </small>
+                </div>
+            </div>
+            <div *ngIf="f.submitted && !dob.valid" class="help-block">Birth date is required</div>
+        </div> -->
+                   
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">Register</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+            />
+            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+</div>

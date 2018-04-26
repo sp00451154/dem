@@ -1,0 +1,13 @@
+﻿<div class="col-md-6 col-md-offset-3">
+    <p>Welcome to my home page..</p>
+    <h1>Hi {{currentUser.firstName}}</h1>
+    <p>Please find your details below</p>
+    <h3>FirstName : {{currentUser.firstName}}</h3>
+    <h3>SurName : {{currentUser.surName}}</h3>
+    <h3>LastName : {{currentUser.lastName}}</h3>
+    <h3>UserName : {{currentUser.username}}</h3>
+    <h3>MobileNumber : {{currentUser.mobilenumber}}</h3>
+    <h3>Email-Id : {{currentUser.emailId}}</h3>
+    <h3>Birth Date : {{currentUser.dob}}</h3>
+    <p><a [routerLink]="['/login']">Logout</a></p>
+</div>

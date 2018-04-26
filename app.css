@@ -1,0 +1,21 @@
+﻿a {
+    cursor: pointer;
+}
+
+.help-block {
+    font-size: 12px;
+}
+
+.header{
+    text-align-last: center;
+    background-color: rgb(209, 209, 167);
+   }
+   .footer{
+    text-align-last: center;
+     background-color: rgb(190, 190, 163);
+     position:absolute;
+     bottom: 0.1;
+     width:100%;
+   }
+   
+   
